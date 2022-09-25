@@ -13,13 +13,13 @@ import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class Main {
+public class main {
 
     private final Dotenv config;
 
     private final ShardManager shardManager;
 
-    public Main()
+    public main()
     {
         config = Dotenv.configure().load();
 
@@ -49,6 +49,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        Main bot = new Main();
+        main bot = new main();
     }
 }
