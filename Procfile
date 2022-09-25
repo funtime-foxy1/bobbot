@@ -1,1 +1,1 @@
-Worker: java src/main/java/com/funfoxrr/BobBot/Main.java
+Worker: java src/main/java/com/funfoxrr/BobBot/main.java
