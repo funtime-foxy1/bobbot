@@ -59,7 +59,7 @@ public class CommandManager extends ListenerAdapter {
             if (messageOption1 != null)
             {
                 System.out.println("Channel and the user is "  + event.getUser().getName());
-                var channel = messageOption1.getAsChannel().asTextChannel().getId();
+                String channel = messageOption1.getAsChannel().asTextChannel().getId();
                 System.out.println(channel + ", " + messageOption1.getAsChannel().getName());
                 event.getGuild().getTextChannelById(channel).sendMessage(message).queue();
             } else
@@ -86,7 +86,7 @@ public class CommandManager extends ListenerAdapter {
             {
                 event.getGuild().ban(user, 0, TimeUnit.SECONDS).reason(reason).queue(suc -> // BANS PLAYER
                 {
-                    var eb = Ban(user, reason);
+                    MessageEmbed eb = Ban(user, reason);
                     event.replyEmbeds(eb).queue();
                 });
             }
@@ -101,13 +101,13 @@ public class CommandManager extends ListenerAdapter {
 
             if (user.getId() == event.getUser().getId())
             {
-                var embed = CreateEmbed(":x: You cant ban yourself!", "Why would you ban your self? :joy:");
+                EmbedBuilder embed = CreateEmbed(":x: You cant ban yourself!", "Why would you ban your self? :joy:");
                 event.replyEmbeds(embed.build()).setEphemeral(true).queue();
                 return;
             }
             if (user.isBot())
             {
-                var embed = CreateEmbed(":x: I dont want to ban a bot!", "I dont want to ban my fellow friends!");
+                EmbedBuilder embed = CreateEmbed(":x: I dont want to ban a bot!", "I dont want to ban my fellow friends!");
                 event.replyEmbeds(embed.build()).setEphemeral(true).queue();
                 return;
             }
@@ -126,13 +126,13 @@ public class CommandManager extends ListenerAdapter {
 
         else if (command.equals("serverinfo")) {
 
-            var timeCreated = event.getGuild().getTimeCreated().getDayOfWeek() + ", " + event.getGuild().getTimeCreated().getMonth() + " " + event.getGuild().getTimeCreated().getDayOfMonth() + ", " + event.getGuild().getTimeCreated().getYear();
+            String timeCreated = event.getGuild().getTimeCreated().getDayOfWeek() + ", " + event.getGuild().getTimeCreated().getMonth() + " " + event.getGuild().getTimeCreated().getDayOfMonth() + ", " + event.getGuild().getTimeCreated().getYear();
 
             //event.getGuild().get
 
             // .setAuthor("FunFoxRR", "https://gamejolt.com/@FunFoxRR", "https://funfoxrr.neocities.org/pfp256BG.png")
 
-            var embed = CreateEmbed(":computer: Server Info!", "")
+            EmbedBuilder embed = CreateEmbed(":computer: Server Info!", "")
                     .setImage(event.getGuild().getIconUrl())
                     .addField("Online Users:", String.valueOf(event.getGuild().getMembers().size()), true)
                     .addField("Created On:", timeCreated, false);
@@ -145,7 +145,7 @@ public class CommandManager extends ListenerAdapter {
 
             // .setAuthor("FunFoxRR", "https://gamejolt.com/@FunFoxRR", "https://funfoxrr.neocities.org/pfp256BG.png")
 
-            var embed = CreateEmbed("Help", "------------------------------------------")
+            EmbedBuilder embed = CreateEmbed("Help", "------------------------------------------")
                     .setAuthor("FunFoxRR", "https://gamejolt.com/@FunFoxRR", "https://funfoxrr.neocities.org/pfp256BG.png")
                     .setImage("https://funfoxrr.neocities.org/bobbot.png")
                     .addField("/help [private]", "Get a list of commands!", false)
@@ -168,22 +168,22 @@ public class CommandManager extends ListenerAdapter {
                 event.replyEmbeds(embed.build()).queue(); // not private
             }*/
 
-            var help = CreateEmbed("Command: Help", "")
+            EmbedBuilder help = CreateEmbed("Command: Help", "")
                     .addField("Usage:", "/help [command]", false)
                     .addField("Desecription:", "All it does is helps you with commands!", false);
-            var serverinfo = CreateEmbed("Command: serverinfo", "")
+            EmbedBuilder serverinfo = CreateEmbed("Command: serverinfo", "")
                     .addField("Usage:", "/serverinfo", false)
                     .addField("Desecription:", "Gives you some info about the current server the bot is in.", false);
-            var welcome = CreateEmbed("Command: welcome", "")
+            EmbedBuilder welcome = CreateEmbed("Command: welcome", "")
                     .addField("Usage:", "/welcome", false)
                     .addField("Desecription:", "Gives you a comfy welcome to the server privately.", false);
-            var say = CreateEmbed("Command: say", "")
+            EmbedBuilder say = CreateEmbed("Command: say", "")
                     .addField("Usage:", "/say <message> [channel]", false)
                     .addField("Desecription:", "I say something for you! Ex: [/say hello] -> hello", false);
-            var createbutton = CreateEmbed("Command: createbutton", "")
+            EmbedBuilder createbutton = CreateEmbed("Command: createbutton", "")
                     .addField("Usage:", "/createbutton <buttonid> <buttontext>", false)
                     .addField("Desecription:", "Creates a button for testing!", false);
-            var ban = CreateEmbed("Command: ban", "")
+            EmbedBuilder ban = CreateEmbed("Command: ban", "")
                     .addField("Usage:", "/ban <user> [reason]", false)
                     .addField("Desecription:", "Bans a person if they are a bad boi.", false)
                     .addField("Accessable to:", "mods", false);
